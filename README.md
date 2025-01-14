@@ -1,36 +1,74 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Getting Started
+# Worksheet: Google Spreadsheet Clone
 
-First, run the development server:
+Worksheet is a powerful and intuitive spreadsheet application built with React and Next.js, designed to help you organize, analyze, and visualize your data with ease.
+
+Designed to mimic the functionality of popular spreadsheet tools, Worksheet allows users to create, edit, and manage data seamlessly
+
+
+## Tech Stack Used
+
+
+- **Frontend**:  Next.js, TypeScript, Tailwind CSS
+- **Backend**:  Next.js API routes, TypeScript, MongoDB, Prisma ORM
+- **UI Library**:  ShadCN UI
+
+
+## Screenshots
+
+![App Screenshot](https://firebasestorage.googleapis.com/v0/b/docwrite-38576.appspot.com/o/ksnip_20250114-122948.png?alt=media&token=bb947427-faf9-49cf-85ae-a2f70ee3230a)
+
+![App Screenshot](https://firebasestorage.googleapis.com/v0/b/docwrite-38576.appspot.com/o/ksnip_20250114-123205.png?alt=media&token=44354c2f-864d-4d2a-8b97-89b13949df09)
+
+![App Screenshot](https://firebasestorage.googleapis.com/v0/b/docwrite-38576.appspot.com/o/ksnip_20250114-123347.png?alt=media&token=2327cbd8-c316-40e1-bcf3-6b7079373957)
+
+
+## Environment Variables
+
+To run this project, you will need to add the following environment variables to your .env file
+
+`DATABASE_URL`="mongodb_url"
+
+`AUTH_GOOGLE_ID`=get from google cloud console
+
+`AUTH_GOOGLE_SECRET`=get from google cloud console
+
+`AUTH_SECRET`="any random string" 
+
+
+## Deployment
+
+- You can view the application by clicking the URL:
+-  URL: https://worksheet-jade.vercel.app/
+## Run Locally
+
+Clone the project
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+  git clone https://github.com/abhinavkr2108/worksheet
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Go to the project directory
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+  cd worksheet
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Install dependencies (Backend)
 
-## Learn More
+```bash
+  npm install
+```
 
-To learn more about Next.js, take a look at the following resources:
+Prisma Commands
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+  npx prisma generate
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Run the development Server
 
-## Deploy on Vercel
+```bash
+  npm run dev
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
