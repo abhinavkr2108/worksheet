@@ -1,8 +1,14 @@
 "use client";
 
+import { Session } from "next-auth";
 import { Button } from "../ui/button";
+import Link from "next/link";
+import SignInModal from "./sign-in-modal";
 
-export default function HeroHome() {
+interface HeroHomeProps {
+  session: Session | null;
+}
+export default function HeroHome({ session }: HeroHomeProps) {
   return (
     <div
       style={{
@@ -18,24 +24,25 @@ export default function HeroHome() {
             <div className="max-w-xl mb-6">
               <div>
                 <p className="inline-block px-3 py-px mb-4 text-xs font-semibold tracking-wider text-teal-900 uppercase rounded-full bg-teal-accent-400">
-                  Brand new
+                  Introducing
                 </p>
               </div>
               <h2 className="max-w-lg mb-6 font-sans text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl sm:leading-none">
-                Innovative analytics
-                <br className="hidden md:block" />
-                that you{" "}
-                <span className="inline-block text-deep-purple-accent-400">
-                  will love
-                </span>
+                Worksheet - The Flexible Spreadsheet
               </h2>
               <p className="text-base text-gray-700 md:text-lg">
-                Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-                accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
-                quae. explicabo.
+                Worksheet is a powerful and intuitive spreadsheet application
+                built with React and Next.js, designed to help you organize,
+                analyze, and visualize your data with ease.
               </p>
             </div>
-            <Button className="w-fit">Get started</Button>
+            {session ? (
+              <Link href="/dashboard">
+                <Button className="w-fit">Get started</Button>
+              </Link>
+            ) : (
+              <SignInModal />
+            )}
           </div>
           <div className="relative">
             <svg

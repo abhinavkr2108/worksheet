@@ -14,7 +14,10 @@ import Link from "next/link";
 import React from "react";
 import { RiLogoutBoxRLine } from "react-icons/ri";
 
-export default function Header() {
+interface HeaderProps {
+  userId: string;
+}
+export default function Header({ userId }: HeaderProps) {
   return (
     <div className="w-full border-b">
       {" "}
@@ -39,10 +42,12 @@ export default function Header() {
             <DropdownMenuContent>
               <DropdownMenuLabel>My Account</DropdownMenuLabel>
               <DropdownMenuSeparator />
-              <DropdownMenuItem className="flex gap-2 items-center">
-                <UserIcon />
-                Profile
-              </DropdownMenuItem>
+              <Link href={`/dashboard/profile/${userId}`}>
+                <DropdownMenuItem className="flex gap-2 items-center">
+                  <UserIcon />
+                  Profile
+                </DropdownMenuItem>
+              </Link>
               <DropdownMenuItem
                 className="text-red-600 flex gap-2 items-center"
                 onClick={() => signOut()}

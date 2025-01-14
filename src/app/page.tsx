@@ -1,16 +1,16 @@
+import Features from "@/components/shared/features";
 import HeroHome from "@/components/shared/hero";
 import Navbar from "@/components/shared/navbar";
-
-import { Button } from "@/components/ui/button";
-import { div } from "framer-motion/client";
-import Image from "next/image";
 import React from "react";
+import { auth } from "../../auth";
 
-export default function Home() {
+export default async function Home() {
+  const session = await auth();
   return (
     <React.Fragment>
       <Navbar />
-      <HeroHome />
+      <HeroHome session={session} />
+      <Features />
     </React.Fragment>
   );
 }

@@ -6,26 +6,50 @@ export async function POST(req: Request) {
   try {
     const session = await auth();
     if (!session) {
-      return new Response("Unauthorized", { status: 401 });
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
+
     const userId = session.user?.id;
     if (!userId) {
-      return new Response("Unauthorized", { status: 401 });
+      return NextResponse.json({ error: "User ID not found" }, { status: 401 });
     }
-    const { docId } = await req.json();
+
+    const body = await req.json();
+    const { docId } = body;
+
     if (!docId) {
-      return new Response("Bad Request", { status: 400 });
+      return NextResponse.json(
+        { error: "Document ID required" },
+        { status: 400 }
+      );
     }
-    const doc = await prisma.spreadsheet.delete({
+
+    // First delete all cells associated with the spreadsheet
+    await prisma.cell.deleteMany({
+      where: {
+        spreadsheetId: docId,
+      },
+    });
+
+    // Then delete the spreadsheet
+    await prisma.spreadsheet.delete({
       where: {
         id: docId,
         userId: userId,
       },
     });
 
-    return NextResponse.json({ success: true });
+    return NextResponse.json({
+      success: true,
+      message: "Document deleted successfully",
+    });
   } catch (error) {
-    console.error(error);
-    return NextResponse.json({ error: "Something went wrong" });
+    return NextResponse.json(
+      {
+        error: "Failed to delete document",
+        details: error instanceof Error ? error.message : "Unknown error",
+      },
+      { status: 500 }
+    );
   }
 }
