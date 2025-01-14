@@ -3,11 +3,11 @@ import Header from "./components/header/header";
 import NewDocument from "./components/new-document";
 import DocumentList from "./components/document-list";
 import TableHeading from "./components/table-heading";
-import { useUser } from "@/hooks/useUser";
+import { requireUser } from "@/hooks/requireUser";
 import { prisma } from "@/lib/prisma";
 
 export default async function DashboardPage() {
-  const session = await useUser();
+  const session = await requireUser();
 
   const userId = session?.user?.id as string;
 

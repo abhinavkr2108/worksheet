@@ -5,11 +5,11 @@ import { Card, CardBody, CardFooter, CardHeader } from "@nextui-org/react";
 import { signOut } from "next-auth/react";
 import React from "react";
 import SignoutButton from "./components/signout-btn";
-import { useUser } from "@/hooks/useUser";
+import { requireUser } from "@/hooks/requireUser";
 
 type Params = Promise<{ userId: string }>;
 export default async function ProfilePage({ params }: { params: Params }) {
-  const session = await useUser();
+  const session = await requireUser();
   const { userId } = await params;
   console.log("userId:", userId);
   const user = await prisma.user.findUnique({
